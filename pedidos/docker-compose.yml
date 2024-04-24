@@ -1,0 +1,19 @@
+version: '0.1'
+
+services:
+  database:
+    image: postgres
+    container_name: order-microsservices-first-study
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=ms_order
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local
