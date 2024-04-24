@@ -3,14 +3,14 @@ version: '0.1'
 services:
   database:
     image: postgres
-    container_name: client-microsservices-first-study
+    container_name: product-microsservices-first-study
     restart: always
     ports:
-      - 5432:5432
+      - 5435:5432
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=ms_client
+      - POSTGRES_DB=ms_product
     volumes:
       - pgdata:/data/postgres
 
