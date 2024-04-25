@@ -1,4 +1,5 @@
 import { prismaClient } from "../../infra/database/prismaClient";
+import { KafkaSendMessage } from "../../infra/providers/kafka/producer";
 
 
 type CreateProductRequest = {
@@ -26,6 +27,14 @@ export class CreateProductUseCase {
                 ...data
             }
         });
+
+        const kafMessage = new KafkaSendMessage();
+        await kafMessage.execute("PRODUCT_CREATED", {
+            id: productCreated.id,
+            code: productCreated.code
+        });
+
+        console.log(kafMessage)
 
         return productCreated;
     }
