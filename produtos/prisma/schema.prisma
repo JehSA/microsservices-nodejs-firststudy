@@ -13,3 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Product {
+  id String @id @default(uuid())
+  name String
+  code String @unique
+  quantity Int
+  price Float
+
+  @@map("products")
+}
