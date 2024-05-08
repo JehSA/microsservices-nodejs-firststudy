@@ -3,13 +3,13 @@ import { kafkaConsumer } from "../kafka.consumer";
 
 
 type CustomerConsumer = {
-    email: string,
-    id: string
+    id: string,
+    email: string    
 }
 
 export async function createCustomerConsumer() {
     console.log("CUSTOMER CONSUMER");
-    const consumer = await kafkaConsumer("CUSTOMER_CREATED");
+    const consumer = await kafkaConsumer("CLIENT_CREATED");
     await consumer.run({
         eachMessage: async ({message}) => {
             const messageToString = message.value!.toString();
@@ -21,6 +21,8 @@ export async function createCustomerConsumer() {
                     email: customer.email
                 }
             });
+
+            console.log()
             
             console.log(messageToString);
         },

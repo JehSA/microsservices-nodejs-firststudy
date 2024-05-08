@@ -34,8 +34,6 @@ export class CreateProductUseCase {
             code: productCreated.code
         });
 
-        console.log(kafMessage)
-
         return productCreated;
     }
 }

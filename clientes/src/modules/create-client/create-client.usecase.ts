@@ -20,7 +20,7 @@ export class CreateClientUseCase {
             }
         });
 
-        if(custumer) throw new Error('Custumer already exists!') 
+        if(custumer) throw new Error('Custumer already exists!'); 
 
         const custumerCreated = await prismaClient.client.create({
             data: {
@@ -29,7 +29,7 @@ export class CreateClientUseCase {
         });
 
         const kafkaProducer = new KafkaSendMessage();
-        await kafkaProducer.execute("CUSTOMER_CREATED", {
+        await kafkaProducer.execute("CLIENT_CREATED", {
             id: custumerCreated.id,
             email: custumerCreated.email
         });
